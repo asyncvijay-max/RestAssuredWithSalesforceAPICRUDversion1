@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class SalesforceApi {
 
-    private static String access_token = "00DjV0000035sTI!AQEAQDDjDWvLwv0rPAJXe0n_w6nkbRLiN76DNjiA9aCAiocVg_HBESGdQ7J0PUuAOX_35U38DNV8hpym0mRXtkkxewzhFbQI";
+    private static String access_token = "";
 
     public static Response post(String accountPayload)
     {
