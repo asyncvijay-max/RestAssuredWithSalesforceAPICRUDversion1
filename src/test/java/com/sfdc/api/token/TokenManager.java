@@ -28,6 +28,8 @@ public class TokenManager
     // Salesforce does not return expires_in for client_credentials, so use a safe window
     private static final Duration TOKEN_VALIDITY = Duration.ofHours(1);
 
+    // synchronized keyword avoid race condition between Threads running in parallel.
+    //This happens during parallel execution
     public static synchronized String getAccessToken() {
         if(accessToken == null)
         {

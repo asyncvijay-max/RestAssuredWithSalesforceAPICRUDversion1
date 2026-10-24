@@ -10,6 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class GetAccessToken {
 
+    static String access_token = "00DjV0000035sTI!AQEAQDDjDWvLwv0rPAJXe0n_w6nkbRLiN76DNjiA9aCAiocVg_HBESGdQ7J0PUuAOX_35U38DNV8hpym0mRXtkkxewzhFbQI";
 
     // Generates Access Token,it doesnot have expiry date set in the payload.
     //Call once manually by running in postman tool,copy the access token to a variable in  api layer and use it in every CRUD call
@@ -33,5 +34,10 @@ public class GetAccessToken {
 
         return response.path("access_token");
 
+    }
+
+    public static String theAccessToken()
+    {
+        return access_token;
     }
 }

@@ -13,7 +13,7 @@ public class SalesforceCRUDAPITest {
 
 
     @Test
-    public void createNewAccountTest()
+    public void shouldBeAbleToCreateNewAccountTest()
     {
         String payload = "{\n" +
                 "  \"Name\": \"IrityAV Test Account\",\n" +
@@ -158,7 +158,7 @@ public class SalesforceCRUDAPITest {
     }
 
     @Test
-    public void getaSingleAccountTest()
+    public void shouldBeAbleToGetaSingleAccountTest()
     {
         //Pass The AccountId as paramater to get() method
         Response response = SalesforceApi.get("001jV00000HwOL7QAN");
@@ -177,7 +177,7 @@ public class SalesforceCRUDAPITest {
 
 
     @Test
-    public void updateASingleAccountTest()
+    public void shouldbeAbleToUpdateASingleAccountTest()
     {
         String payload = "{\n" +
                 "\"Phone\": \"987654321\"\n" +

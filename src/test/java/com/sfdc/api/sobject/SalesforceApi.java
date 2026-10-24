@@ -2,6 +2,7 @@ package com.sfdc.api.sobject;
 
 import com.sfdc.api.restapi.RestResourceApi;
 import com.sfdc.api.spec.SpecBuilder;
+import com.sfdc.api.token.GetAccessToken;
 import com.sfdc.api.token.TokenManager;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -10,18 +11,18 @@ import static io.restassured.RestAssured.given;
 
 public class SalesforceApi {
 
-    private static String access_token = "00DjV0000035sTI!AQEAQDDjDWvLwv0rPAJXe0n_w6nkbRLiN76DNjiA9aCAiocVg_HBESGdQ7J0PUuAOX_35U38DNV8hpym0mRXtkkxewzhFbQI";
+    //private static String access_token = "00DjV0000035sTI!AQEAQDDjDWvLwv0rPAJXe0n_w6nkbRLiN76DNjiA9aCAiocVg_HBESGdQ7J0PUuAOX_35U38DNV8hpym0mRXtkkxewzhFbQI";
 
     public static Response post(String accountPayload)
     {
-        return RestResourceApi.post(accountPayload,access_token,"/services/data/v66.0/sobjects/Account");
+        return RestResourceApi.post(accountPayload, GetAccessToken.theAccessToken(),"/services/data/v66.0/sobjects/Account");
 
     }
 
     public static Response get(String accountId)
     {
         String endPoint = "/services/data/v66.0/sobjects/Account/"+ accountId;
-        return RestResourceApi.get(access_token,endPoint);
+        return RestResourceApi.get(GetAccessToken.theAccessToken(),endPoint);
 
 
 
@@ -47,7 +48,7 @@ public class SalesforceApi {
 
         String endPoint = "/services/data/v66.0/sobjects/Account/"+ accountId;
 
-        Response response = RestResourceApi.update(access_token,accountPayLoad,endPoint);
+        Response response = RestResourceApi.update(GetAccessToken.theAccessToken(),accountPayLoad,endPoint);
         return response;
 
         //or ,write in single line
