@@ -1,0 +1,89 @@
+Api Layer - Resource specific
+
+package com.sfdc.api.sobject;
+
+import com.sfdc.api.spec.SpecBuilder;
+import com.sfdc.api.token.TokenManager;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+
+import static io.restassured.RestAssured.given;
+
+public class SalesforceApi {
+
+    private static String access_token = "00DjV0000035sTI!AQEAQDDjDWvLwv0rPAJXe0n_w6nkbRLiN76DNjiA9aCAiocVg_HBESGdQ7J0PUuAOX_35U38DNV8hpym0mRXtkkxewzhFbQI";
+
+    public static Response post(String accountPayload)
+    {
+        Response response =
+                given(SpecBuilder.getRequestSpec())
+                    //.baseUri("https://aveggse2e-dev-ed.develop.my.salesforce.com") -> moved to Spec Builder
+                    .contentType(ContentType.JSON)
+                    .header("Authorization", "Bearer " + access_token)
+                    .body(accountPayload).
+                    //.log().all(). -> moved to Spec Builder
+                when()
+                        .post("/services/data/v66.0/sobjects/Account").
+                then().spec(SpecBuilder.getResponseSpec())
+                //.log().all(). -> moved to Spec Builder
+                .extract().response();
+
+        return response;
+    }
+
+    public static Response get(String accountId)
+    {
+        Response response = given(SpecBuilder.getRequestSpec())
+                    //.baseUri("https://aveggse2e-dev-ed.develop.my.salesforce.com")
+                    .header("Authorization", "Bearer " + access_token)
+                    .log().all().
+                when()
+                    .get("/services/data/v66.0/sobjects/Account/"+ accountId).
+                then().spec(SpecBuilder.getResponseSpec())
+                    //.log().all()
+                    .extract().response();
+
+        return response;
+    }
+
+    //Use for negative test where invalid Token is send,its a Overloaded Post Method
+    public static Response post(int invalidToken,String accountPayload)
+    {
+        Response response =
+                given()
+                        .baseUri("https://aveggse2e-dev-ed.develop.my.salesforce.com")
+                        .contentType(ContentType.JSON)
+                        .header("Authorization", "Bearer " + invalidToken)
+                        .body(accountPayload)
+                        .log().all().
+                        when()
+                        .post("/services/data/v66.0/sobjects/Account").
+                        then()
+                        .log().all()
+                        .extract().response();
+
+        return response;
+    }
+
+    public static Response update(String accountId,String accountPayLoad)
+    {
+        //payload is { "Phone": "{{$randomPhoneNumber}}"} since patch,not sending full body for patch
+
+                Response response = given(SpecBuilder.getRequestSpec())
+                    //.baseUri("https://aveggse2e-dev-ed.develop.my.salesforce.com")
+                    .header("Authorization", "Bearer " + access_token)
+                    .body(accountPayLoad)
+                    .log().all().
+                when()
+                    .patch("/services/data/v66.0/sobjects/Account/"+ accountId).
+                then().spec(SpecBuilder.getResponseSpec())
+                        //.log().all()
+                        .extract().response();
+
+        return response;
+    }
+
+
+
+
+}

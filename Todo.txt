@@ -1,0 +1,8 @@
+pending:
+24th Oct
+
+- POJO for payload
+- Parallel execution
+-Add Allure reports
+-CI Jenkins/GitActions
+-
