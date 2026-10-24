@@ -45,8 +45,8 @@ public class TokenManager
     {
         HashMap<String,String> formParam = new HashMap<>();
         formParam.put("grant_type","client_credentials");
-        formParam.put("client_id","3MVG97Tt9.zIfTDunOdt7b5XDuawaML5uXc2ZpCsujBb5TWEaPXt5sQKM7xHtMcxf986IX4SDQdFa6I2au6Gn");
-        formParam.put("client_secret","A1E90F4231A619D25FA4C8CB76513F45CC627A2647AFA4EE01EE7B5F1BCE4B1F");
+        formParam.put("client_id","");
+        formParam.put("client_secret","");
 
         Response response = given()
                 .baseUri("https://aveggse2e-dev-ed.develop.my.salesforce.com")
